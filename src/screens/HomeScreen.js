@@ -13,8 +13,7 @@ const HomeScreen = ({ navigation }) => {
     const [menu_value, setMenuValue] = useState(1);
 
     const [fontsLoaded] = useFonts({
-        'Gilroy': require('../../assets/Fonts/Gilroy-Light.otf'),
-        'Questrial': require('../../assets/Fonts/Questrial-Regular.ttf'),
+        'Roboto': require('../../assets/Fonts/Roboto-Regular.ttf'),
 
     });
 
@@ -40,9 +39,14 @@ const HomeScreen = ({ navigation }) => {
         return (
             <List.Item
                 title={item.name}
+                titleStyle={styles.chatTitle}
                 description={item.shortMessage}
-                left={item => <List.Image source={item.image} />}
-                // right={}
+                left={props => <List.Image {...props} source={item.image} />}
+                right={props => <View style={{alignItems:"center",flexDirection:"column",alignContent:"space-between"}}>
+                    <Text>{item.time}</Text>
+                    <Text>{item.notification}</Text>
+
+                </View>}
             />
         )
     }
@@ -83,17 +87,24 @@ export default HomeScreen
 
 const styles = StyleSheet.create({
     headerTitle: {
-        fontFamily: 'Gilroy',
+        fontFamily: 'Roboto',
         fontWeight: '700',
         fontSize: 30
     },
     topTabsTitle: {
-        fontFamily: 'Questrial',
+        fontFamily: 'Roboto',
         fontSize: 20,
         fontWeight: '600',
         paddingHorizontal: 20,
         paddingVertical: 8,
         marginHorizontal: 5,
         borderRadius: 20,
+    },
+    chatTitle:{
+        fontFamily: 'Roboto',
+        fontWeight: '700',
+        fontSize:23,
+        color:'#131313'
+
     }
 })
