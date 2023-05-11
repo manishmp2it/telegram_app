@@ -1,0 +1,78 @@
+const chatsData = [
+    {
+        id: 1,
+        name: "Theresa Webb",
+        message: "Hi, son, how are you doing? Today, my father and I went to buy a car, bought a cool car.",
+        message_type:'text',
+        incoming_type:"sender",
+        image: null,
+    },
+    {
+        id: 2,
+        name: "Theresa Webb",
+        message: "Oh! Cool Send me photo",
+        message_type:'text',
+        incoming_type:"receiver",
+        image: null,
+    },
+    {
+        id: 3,
+        name: "Theresa Webb",
+        message: "ok",
+        message_type:'text',
+        incoming_tye:"receiver",
+        incoming_type:"sender",
+        image: null,
+    },
+    {
+        id: 4,
+        name: "Theresa Webb",
+        message: null,
+        message_type:'image',
+        incoming_type:"sender",
+        image: require('../images/chatScreen/car.png'),
+    },
+    {
+        id: 5,
+        name: "Theresa Webb",
+        message: 'Will we arrive tomorrow?',
+        message_type:'text',
+        incoming_type:"sender",
+        image:null,
+    },
+    {
+        id: 6,
+        name: "Theresa Webb",
+        message: 'ok',
+        message_type:'text',
+        incoming_type:"receiver",
+        image:null,
+    },
+    {
+        id: 7,
+        name: "Theresa Webb",
+        message: 'ok',
+        message_type:'text',
+        incoming_type:"receiver",
+        image:null,
+    },
+    {
+        id: 8,
+        name: "Theresa Webb",
+        message: 'ok',
+        message_type:'text',
+        incoming_type:"receiver",
+        image:null,
+    },
+    {
+        id: 9,
+        name: "Theresa Webb",
+        message: 'ok',
+        message_type:'text',
+        incoming_type:"receiver",
+        image:null,
+    },
+   
+]
+
+export default chatsData;
