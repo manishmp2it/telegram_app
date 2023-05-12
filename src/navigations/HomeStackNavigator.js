@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MainProfileSettingScreen from '../screens/MainProfileSettingScreen';
 import ChatScreen from '../screens/ChatScreen';
 import ChatProfileScreen from '../screens/ChatProfileScreen';
+import CallScreen from '../screens/CallScreen';
 
 const HomeStack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ const HomeStackNavigator = () => {
       <HomeStack.Screen name='MainProfile' component={MainProfileSettingScreen} options={{headerShown:false}} />
       <HomeStack.Screen name='ChatScreen' component={ChatScreen} options={{headerShown:false}} />
       <HomeStack.Screen name='ChatProfile' component={ChatProfileScreen} options={{headerShown:false}} />
+      <HomeStack.Screen name='CallScreen' component={CallScreen} options={{headerShown:false}} />
 
    </HomeStack.Navigator>
   )

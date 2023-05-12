@@ -13,7 +13,7 @@ const ChatProfileScreen = ({ navigation }) => {
 
     const renderItem = ({ item }) => (
         <Pressable>
-          <Image source={item.image} style={{aspectRatio:1,height:115,margin:5}} />
+          <Image source={item.image} style={{height:115,margin:5,aspectRatio:1}} />
         </Pressable>
       );
 
@@ -46,13 +46,13 @@ const ChatProfileScreen = ({ navigation }) => {
             </View>
             <View style={tw`mx-[12px] mt-[10px] flex-row justify-around`}>
                 <TouchableOpacity>
-                    <Text style={tw`text-[#131313] bg-[#fff] px-[30] py-[10] rounded-[14px] font-normal`} >Location</Text>
+                    <Text style={tw`text-[#131313] px-[30] py-[10] rounded-[14px] font-normal`} >Location</Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <Text style={tw`text-[#fff] bg-[#2675EC] px-[30] py-[10] rounded-[14px] font-normal`} >Image</Text>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                    <Text style={tw`text-[#131313] bg-[#fff] px-[30] py-[10] rounded-[14px] font-normal`} >Documents</Text>
+                    <Text style={tw`text-[#131313] px-[30] py-[10] rounded-[14px] font-normal`} >Documents</Text>
                 </TouchableOpacity>
             </View>
             <View style={tw`flex-1 pt-2 mt-2`}>

@@ -1,8 +1,8 @@
-import { View, Text, TouchableOpacity, Image, FlatList, TextInput, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback, Platform, Dimensions, SafeAreaView, Modal, Pressable, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, Image, FlatList, TextInput, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback, Platform, Dimensions, SafeAreaView, Modal, Pressable, StyleSheet, TouchableHighlight } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import tw from 'twrnc'
-import { Appbar } from 'react-native-paper'
-import { AntDesign, Entypo, Ionicons, MaterialIcons } from '@expo/vector-icons'
+import { Appbar, Button, Divider, Menu, Provider } from 'react-native-paper'
+import { AntDesign, Entypo, Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import chatsData from '../../assets/data/chatsData'
 import { useRoute } from '@react-navigation/native'
 import EmojiPicker from 'rn-emoji-keyboard'
@@ -14,10 +14,13 @@ const ChatScreen = ({ navigation }) => {
     const { params } = useRoute();
     const [height, setHeight] = useState(0);
     const [isVisible, setIsVisible] = useState(false);
-
+    const [visible, setVisible] = React.useState(false);
     const [chats, setChats] = useState(chatsData);
-
     const [isOpen, setIsOpen] = useState(false);
+
+    const openMenu = () => setVisible(true);
+
+    const closeMenu = () => setVisible(false);
 
     const handleOnClose = () => {
         setIsOpen(false)
@@ -81,6 +84,7 @@ const ChatScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={tw`flex-1 bg-[#fff]`}>
+
             <Appbar.Header statusBarHeight={35} style={tw`justify-between items-center`}>
                 <View style={tw`flex-row items-center`}>
                     <TouchableOpacity style={tw`mt-[10px]`} onPress={() => {
@@ -96,9 +100,43 @@ const ChatScreen = ({ navigation }) => {
                         </View>
                     </View>
                 </View>
-                <TouchableOpacity style={tw`mt-[10px]`} onPress={()=>navigation.navigate('ChatProfile')}>
-                    <Image style={tw`w-[18px] h-[16px] mr-[10px]`} source={require('../../assets/images/chatScreen/profile_menu.png')} />
-                </TouchableOpacity>
+
+                <Menu
+                    style={tw`mt-[10px] rounded-[35px]`}
+                    visible={visible}
+                    contentStyle={tw`bg-[#2675EC] rounded-[35px] rounded-tr-[10px] `}
+
+                    onDismiss={closeMenu}
+                    anchor={<Button style={tw`mt-[10px]`} onPress={openMenu}> <Image style={tw`w-[18px] h-[16px] mr-[10px]`} source={require('../../assets/images/chatScreen/profile_menu.png')} /></Button>}>
+                    <TouchableOpacity>
+                        <Menu.Item titleStyle={tw`text-[#fff] text-[14px]`} leadingIcon={() => (
+                            <MaterialCommunityIcons name="phone-hangup-outline" size={24} color="#fff" />
+                        )} onPress={() => {
+                            navigation.navigate('CallScreen');
+                            closeMenu();
+                        }} title="Call" />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity>
+                        <Menu.Item style={tw`focus:bg-[#fff]`} titleStyle={tw`text-[#fff] text-[14px]`} leadingIcon={() => (
+                            <MaterialCommunityIcons name="delete" size={24} color="#fff" />
+                        )} onPress={() => { }} title="Delete chat history" disabled />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity>
+                        <Menu.Item titleStyle={tw`text-[#fff] text-[14px]`} leadingIcon={() => (
+                            <Ionicons name="notifications-off-outline" size={24} color="#fff" />
+                        )} onPress={() => { }} title="Mute notification" disabled />
+                    </TouchableOpacity>
+                    <TouchableOpacity>
+                        <Menu.Item titleStyle={tw`text-[#fff] text-[14px]`} leadingIcon={() => (
+                            <Ionicons name="search" size={24} color="#fff" />
+                        )} onPress={() => {
+                            navigation.navigate('ChatProfile');
+                            closeMenu();
+                        }} title="Search" />
+                    </TouchableOpacity>
+                </Menu>
             </Appbar.Header>
 
             <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -132,7 +170,7 @@ const ChatScreen = ({ navigation }) => {
                     />
 
                     <View style={tw`flex-row`}>
-                       {input==='' && <TouchableOpacity style={tw`mr-[12px]`} onPress={() => setIsVisible(true)}>
+                        {input === '' && <TouchableOpacity style={tw`mr-[12px]`} onPress={() => setIsVisible(true)}>
                             <AntDesign name="plus" size={24} color="#2675EC" />
                         </TouchableOpacity>}
                         <TouchableOpacity style={tw`mr-[12px]`} onPress={() => setIsOpen(true)}>
